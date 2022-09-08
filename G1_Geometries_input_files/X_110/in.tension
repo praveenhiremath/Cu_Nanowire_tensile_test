@@ -1,4 +1,4 @@
-##### TENSILE TEST Cu NANOWIRE
+##### TENSILE TEST Cu NANOWIRE. by Praveenkumar Hiremath
 
 units metal
 dimension 3
@@ -54,16 +54,10 @@ dump 2 all atom 200 newdump.tension
 #change_box all boundary p p p
 reset_timestep 0
 timestep 0.005
-#velocity all create $T 825577 dist gaussian 
-#fix 1 left_block setforce 0.0 0.0 0.0
-#fix 2 right_block nvt temp $T $T 0.01
-#fix 2 mobile nve
 
-#fix 4 right_block ave/atom  1 100 1000 fz
 variable a loop 1000
 label loop
-#fix 3 rightbc move linear 1.0 0.0 0.0
-#fix 3 rightbc deform 1 x vel 1.0  
+  
 displace_atoms rightbc move 0.03615 0.0 0.0 units box
 fix 3 middle_atoms nvt temp 0.01 0.01 0.01
 
