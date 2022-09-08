@@ -7,13 +7,6 @@ atom_style atomic
 read_data ./G1_1Cu_110.lmp 
 #variable latconst equal 3.615
  
-#lattice fcc ${latconst}
-#region nanowire block 0 100 0 6 0 6
-#create_box 3 nanowire
-#lattice fcc ${latconst} orient x 1 1 0 orient y 1 -1 1 orient z 1 -1 -2
-#create_atoms 1 region nanowire
-
-
 region    leftbc block 0 7.66857303 INF INF INF INF  
 group        leftbc region leftbc
 region    rightbc block 247.950528 255.619101 INF INF INF INF  
@@ -21,7 +14,7 @@ group        rightbc region rightbc
 group        boundary union leftbc rightbc
 group        middle_atoms subtract all boundary
  
-mass		* 1.0
+mass		* 63.5
 #pair_style lj/cut 6.4
 #pair_coeff * * 0.1515 2.338
 pair_style eam
@@ -50,21 +43,14 @@ variable tmp equal "lx"
 variable L0 equal ${tmp}
 print "Initial Length, L0: ${L0}"
 
-
 dump 2 all atom 200 newdump.tension
 #change_box all boundary p p p
 reset_timestep 0
 timestep 0.005
-#velocity all create $T 825577 dist gaussian 
-#fix 1 left_block setforce 0.0 0.0 0.0
-#fix 2 right_block nvt temp $T $T 0.01
-#fix 2 mobile nve
 
 #fix 4 right_block ave/atom  1 100 1000 fz
 variable a loop 1000
 label loop
-#fix 3 rightbc move linear 1.0 0.0 0.0
-#fix 3 rightbc deform 1 x vel 1.0  
 displace_atoms rightbc move 0.03615 0.0 0.0 units box
 fix 3 middle_atoms nvt temp 0.01 0.01 0.01
 
