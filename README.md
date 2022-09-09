@@ -1,2 +1,2 @@
-# Copper Nanowire tensile test
+# Copper Nanowire
 Response of copper nanowire under tensile loading (using LAMMPS package)
