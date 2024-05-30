@@ -1,3 +1,4 @@
+// Author: Praveenkumar Hiremath (TU Bergakademie Freiberg, Germany)
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h> 
